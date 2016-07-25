@@ -20,7 +20,7 @@ fi
 # If lock file exists for /dev/ttyACM0
 if [ -f "/var/lock/LCK..ttyACM0" ]
 then
-	rm -f /var/lock/LCK..ttyACM0
+    rm -f /var/lock/LCK..ttyACM0
 fi
 
 # Now start openHab
