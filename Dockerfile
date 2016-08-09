@@ -20,18 +20,19 @@ RUN add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe
     add-apt-repository -y ppa:webupd8team/java
 
 # Install
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y build-essential
-RUN apt-get install -y software-properties-common
-RUN apt-get install -y byobu curl git htop man unzip vim wget hping3
-RUN apt-get install -y perl liblwp-protocol-https-perl libjson-perl libgetopt-long-descriptive-perl 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y build-essential && \
+    apt-get install -y software-properties-common && \
+    apt-get install -y byobu curl git htop man unzip vim wget hping3 perl liblwp-protocol-https-perl libjson-perl libgetopt-long-descriptive-perl
+      
 
 # Install oracle-java8
 RUN (echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections) && apt-get install -y oracle-java8-installer oracle-java8-set-default
 
 # Cleanup
-RUN rm -rf /var/lib/apt/lists/* 
+RUN rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/cache/*
 
 # Install OpenHAB
 RUN mkdir -p $OPENHAB_DIR \
